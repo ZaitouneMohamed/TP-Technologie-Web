@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP - Programmation Asynchrone JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .exercise {
+            background-color: white;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .exercise h2 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .enonce {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 4px solid #3498db;
+        }
+        
+        .code-display {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .code-display pre {
+            margin: 0;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        
+        .output {
+            background-color: #34495e;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 15px 0;
+            min-height: 150px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            white-space: pre-wrap;
+            border: 2px solid #2c3e50;
+        }
+        
+        .output::before {
+            content: "Console de sortie:";
+            display: block;
+            color: #3498db;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+        
+        .clear-btn {
+            background-color: #e74c3c;
+        }
+        
+        .clear-btn:hover {
+            background-color: #c0392b;
+        }
+        
+        .note {
+            background-color: #f39c12;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .important {
+            background-color: #e74c3c;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .todo {
+            background-color: #f1c40f;
+            color: #2c3e50;
+            padding: 10px;
+            border-radius: 3px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        
+        .section-title {
+            background-color: #3498db;
+            color: white;
+            padding: 15px;
+            margin: 30px -25px 20px -25px;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>TP - Programmation Asynchrone en JavaScript</h1>
+        <p>Complétez les exercices dans votre éditeur (VSCode) et testez-les dans cette page</p>
+        <h3>Instructions :</h3>
+        <p> Téléchargez ce fichier, ouvrez-le dans VSCode, et complétez le code JavaScript à l'intérieur des balises &lt;script&gt; 
+        <p>Déposer le fichier <strong>exercices-js-async.html</strong> complété dans <strong>Classroom</strong> </p>
+    </div>
+
+    <!-- PARTIE 1: CALLBACKS ET SETTIMEOUT -->
+    <div class="exercise">
+        <div class="section-title">PARTIE 1 : LES CALLBACKS AVEC SETTIMEOUT</div>
+        
+        <h2>Exercice 1.1 : Premier callback avec setTimeout</h2>
+        <div class="enonce">
+            <strong>Objectif :</strong> Comprendre le mécanisme des callbacks en JavaScript<br><br>
+            <strong>Consigne :</strong> Complétez la fonction <code>recupererUtilisateur</code> pour qu'elle simule un appel API qui prend 2 secondes. 
+            Utilisez <code>setTimeout</code> pour créer ce délai, puis appelez le callback avec les données de l'utilisateur.
+        </div>
+
+        <div class="todo">TODO : Complétez le code dans la balise &lt;script&gt; ci-dessous</div>
+
+        <div class="code-display">
+            <pre>function recupererUtilisateur(id, callback) {
+    console.log("Recherche de l'utilisateur " + id + "...");
+    
+    // TODO: Utilisez setTimeout pour simuler un délai de 2000ms
+    // puis appelez le callback avec les données de l'utilisateur
+    
+    const utilisateur = {
+        id: id,
+        nom: "Alami",
+        prenom: "Fatima",
+        ville: "Casablanca"
+    };
+    
+    // Votre code ici
+}</pre>
+        </div>
+
+        <button onclick="exercice1_1()">Tester l'exercice 1.1</button>
+        <button class="clear-btn" onclick="clearOutput('output1_1')">Effacer</button>
+        <div id="output1_1" class="output"></div>
+    </div>
+
+    <!-- EXERCICE 1.2 -->
+    <div class="exercise">
+        <h2>Exercice 1.2 : Gestion d'erreur avec les callbacks</h2>
+        <div class="enonce">
+            <strong>Objectif :</strong> Implémenter le pattern "error-first callback" utilisé dans Node.js<br><br>
+            <strong>Consigne :</strong> Modifiez la fonction pour qu'elle gère les erreurs. Si l'ID est inférieur ou égal à 0, 
+            appelez le callback avec une erreur. Sinon, appelez-le avec null comme premier paramètre et les données en second.
+        </div>
+
+        <div class="code-display">
+            <pre>function recupererUtilisateurAvecErreur(id, callback) {
+    setTimeout(() => {
+        // TODO: Si id <= 0, appelez callback(new Error("ID invalide"))
+        // Sinon, appelez callback(null, utilisateur)
+        
+        const utilisateur = {
+            id: id,
+            nom: "Bennani",
+            prenom: "Mohammed",
+            email: "m.bennani@example.ma"
+        };
+        
+        // Votre code ici
+        
+    }, 1000);
+}</pre>
+        </div>
+
+        <button onclick="exercice1_2()">Tester l'exercice 1.2</button>
+        <button class="clear-btn" onclick="clearOutput('output1_2')">Effacer</button>
+        <div id="output1_2" class="output"></div>
+    </div>
+
+    <!-- PARTIE 2: XMLHTTPREQUEST -->
+    <div class="exercise">
+        <div class="section-title">PARTIE 2 : XMLHTTPREQUEST ET CALLBACKS</div>
+        
+        <h2>Exercice 2.1 : Première requête AJAX</h2>
+        <div class="enonce">
+            <strong>Objectif :</strong> Utiliser XMLHttpRequest pour faire une vraie requête HTTP<br><br>
+            <strong>Consigne :</strong> Complétez la fonction pour récupérer un utilisateur depuis l'API JSONPlaceholder.
+            <ul>
+                <li>URL : https://jsonplaceholder.typicode.com/users/{userId}</li>
+                <li>Méthode : GET</li>
+                <li>Gérez les états de la requête avec onreadystatechange</li>
+                <li>Parsez le JSON et appelez le callback avec les données</li>
+            </ul>
+        </div>
+
+        <div class="code-display">
+            <pre>function recupererUtilisateurAPI(userId, callback) {
+    const xhr = new XMLHttpRequest();
+    
+    // TODO: Configurez et envoyez la requête
+    // 1. xhr.open('GET', url, true)
+    // 2. xhr.onreadystatechange = function() { ... }
+    // 3. Vérifiez readyState === 4 et status === 200
+    // 4. Parsez la réponse avec JSON.parse()
+    // 5. xhr.send()
+    
+    console.log("Envoi de la requête pour l'utilisateur " + userId);
+    
+    // Votre code ici
+}</pre>
+        </div>
+
+        <button onclick="exercice2_1()">Tester l'exercice 2.1</button>
+        <button class="clear-btn" onclick="clearOutput('output2_1')">Effacer</button>
+        <div id="output2_1" class="output"></div>
+    </div>
+
+    <!-- PARTIE 3: CALLBACK HELL -->
+    <div class="exercise">
+        <div class="section-title">PARTIE 3 : LE PROBLÈME DU CALLBACK HELL</div>
+        
+        <h2>Exercice 3.1 : Cascade de callbacks</h2>
+        <div class="enonce">
+            <strong>Objectif :</strong> Comprendre le problème du "callback hell"<br><br>
+            <strong>Consigne :</strong> Utilisez les fonctions fournies pour créer une chaîne de callbacks :
+            <ol>
+                <li>Récupérez l'utilisateur avec l'ID 1</li>
+                <li>Avec cet utilisateur, récupérez ses posts</li>
+                <li>Avec le premier post, récupérez ses commentaires</li>
+                <li>Affichez chaque résultat dans la console</li>
+            </ol>
+        </div>
+
+        <div class="note">
+            Les fonctions <code>recupererUtilisateur</code>, <code>recupererPosts</code> et <code>recupererCommentaires</code> 
+            sont déjà définies. Vous devez juste les appeler en cascade.
+        </div>
+
+        <div class="code-display">
+            <pre>// Fonctions déjà définies (ne pas modifier)
+function recupererUtilisateur(id, callback) {
+    setTimeout(() => {
+        callback({
+            id: id,
+            nom: "El Idrissi",
+            prenom: "Amina",
+            ville: "Rabat"
+        });
+    }, 1000);
+}
+
+function recupererPosts(userId, callback) {
+    setTimeout(() => {
+        callback([
+            { id: 1, titre: "Introduction à Node.js", userId: userId },
+            { id: 2, titre: "Les Promises en JavaScript", userId: userId }
+        ]);
+    }, 1000);
+}
+
+function recupererCommentaires(postId, callback) {
+    setTimeout(() => {
+        callback([
+            { id: 1, texte: "Excellent article!", auteur: "Khadija" },
+            { id: 2, texte: "Très instructif", auteur: "Hassan" }
+        ]);
+    }, 1000);
+}
+
+function demonstrationCallbackHell() {
+    console.log("Début de la récupération des données...");
+    
+    // TODO: Appelez les fonctions en cascade
+    // Attention à l'indentation qui va créer la "pyramide de l'enfer"
+    
+    // Votre code ici
+}</pre>
+        </div>
+
+        <button onclick="exercice3_1()">Tester l'exercice 3.1</button>
+        <button class="clear-btn" onclick="clearOutput('output3_1')">Effacer</button>
+        <div id="output3_1" class="output"></div>
+    </div>
+
+    <!-- PARTIE 4: PROMESSES ET FETCH -->
+    <div class="exercise">
+        <div class="section-title">PARTIE 4 : LES PROMESSES AVEC FETCH API</div>
+        
+        <h2>Exercice 4.1 : Introduction à Fetch</h2>
+        <div class="enonce">
+            <strong>Objectif :</strong> Découvrir l'API Fetch qui retourne des Promesses<br><br>
+            <strong>Consigne :</strong> Utilisez l'API Fetch pour récupérer un utilisateur. Fetch est plus moderne que XMLHttpRequest :
+            <ul>
+                <li>Utilisez <code>fetch(url)</code> qui retourne une Promise</li>
+                <li>Vérifiez que la réponse est OK avec <code>response.ok</code></li>
+                <li>Convertissez en JSON avec <code>response.json()</code></li>
+                <li>Gérez les erreurs avec <code>.catch()</code></li>
+            </ul>
+        </div>
+
+        <div class="code-display">
+            <pre>function recupererUtilisateurAvecFetch(userId) {
+    // TODO: Utilisez fetch() pour récupérer les données
+    // URL: https://jsonplaceholder.typicode.com/users/{userId}
+    
+    // return fetch(...) 
+    //     .then(response => ...)
+    //     .then(data => ...)
+    
+    // Votre code ici
+}</pre>
+        </div>
+
+        <button onclick="exercice4_1()">Tester l'exercice 4.1</button>
+        <button class="clear-btn" onclick="clearOutput('output4_1')">Effacer</button>
+        <div id="output4_1" class="output"></div>
+    </div>
+
+    <!-- EXERCICE 5: CHAINER LES PROMESSES -->
+    <div class="exercise">
+        <h2>Exercice 5.1 : Chaînage de Promesses</h2>
+        <div class="enonce">
+            <strong>Objectif :</strong> Résoudre le callback hell avec les Promesses<br><br>
+            <strong>Consigne :</strong> Refactorisez l'exercice 3.1 en utilisant les versions Promise des fonctions. 
+            Chaînez les <code>.then()</code> pour obtenir le même résultat mais avec un code plus lisible.
+        </div>
+
+        <div class="code-display">
+            <pre>// Versions Promise des fonctions (déjà définies)
+function recupererUtilisateurPromise(id) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve({
+                id: id,
+                nom: "Tazi",
+                prenom: "Omar",
+                profession: "Ingénieur"
+            });
+        }, 1000);
+    });
+}
+
+function recupererPostsPromise(userId) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve([
+                { id: 1, titre: "Les bases de MongoDB", userId },
+                { id: 2, titre: "Redis pour les débutants", userId }
+            ]);
+        }, 1000);
+    });
+}
+
+function recupererCommentairesPromise(postId) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve([
+                { id: 1, texte: "Super article!", auteur: "Youssef" },
+                { id: 2, texte: "Merci pour le partage", auteur: "Salma" }
+            ]);
+        }, 1000);
+    });
+}
+
+function demonstrationPromiseChain() {
+    console.log("Début avec les Promesses...");
+    
+    // TODO: Chaînez les promesses avec .then()
+    // recupererUtilisateurPromise(1)
+    //     .then(utilisateur => { ... })
+    //     .then(...)
+    //     .catch(erreur => { ... })
+    
+    // Votre code ici
+}</pre>
+        </div>
+
+        <button onclick="exercice5_1()">Tester l'exercice 5.1</button>
+        <button class="clear-btn" onclick="clearOutput('output5_1')">Effacer</button>
+        <div id="output5_1" class="output"></div>
+    </div>
+
+    <!-- PARTIE 5: PROMISE.ALL -->
+    <div class="exercise">
+        <div class="section-title">PARTIE 5 : REQUÊTES PARALLÈLES AVEC PROMISE.ALL</div>
+        
+        <h2>Exercice 6.1 : Optimisation avec Promise.all</h2>
+        <div class="enonce">
+            <strong>Objectif :</strong> Exécuter plusieurs requêtes en parallèle pour gagner du temps<br><br>
+            <strong>Consigne :</strong> Utilisez <code>Promise.all</code> pour récupérer plusieurs profils d'utilisateurs simultanément. 
+            Comparez le temps d'exécution avec une approche séquentielle.
+        </div>
+
+        <div class="code-display">
+            <pre>function recupererProfil(userId) {
+    return new Promise((resolve) => {
+        const delai = Math.random() * 2000 + 500; // Entre 500ms et 2500ms
+        setTimeout(() => {
+            const noms = ["Zahiri", "Mansouri", "Berrada", "Alaoui", "Benjelloun"];
+            const prenoms = ["Nadia", "Leila", "Karim", "Sofia", "Ahmed"];
+            resolve({
+                id: userId,
+                nom: noms[userId - 1],
+                prenom: prenoms[userId - 1],
+                delai: delai
+            });
+        }, delai);
+    });
+}
+
+function demonstrationPromiseAll() {
+    // TODO: Implémentez deux versions :
+    
+    // Version 1 : Séquentielle (mauvaise performance)
+    console.log("Version séquentielle :");
+    console.time("Durée séquentielle");
+    // Récupérez les profils 1, 2, 3 l'un après l'autre
+    
+    // Version 2 : Parallèle avec Promise.all (bonne performance)
+    console.log("\nVersion parallèle :");
+    console.time("Durée parallèle");
+    // Récupérez les profils 1, 2, 3 simultanément
+    
+    // Votre code ici
+}</pre>
+        </div>
+
+        <button onclick="exercice6_1()">Tester l'exercice 6.1</button>
+        <button class="clear-btn" onclick="clearOutput('output6_1')">Effacer</button>
+        <div id="output6_1" class="output"></div>
+    </div>
+
+    <!-- PARTIE 6: ASYNC/AWAIT -->
+    <div class="exercise">
+        <div class="section-title">PARTIE 6 : ASYNC/AWAIT - LA SYNTAXE MODERNE</div>
+        
+        <h2>Exercice 7.1 : Introduction à async/await</h2>
+        <div class="enonce">
+            <strong>Objectif :</strong> Utiliser async/await pour écrire du code asynchrone qui ressemble à du code synchrone<br><br>
+            <strong>Consigne :</strong> Créez une fonction async qui récupère et affiche un tableau de bord complet. 
+            Utilisez <code>await</code> pour attendre chaque opération et <code>try/catch</code> pour gérer les erreurs.
+        </div>
+
+        <div class="code-display">
+            <pre>// Fonction utilitaire (déjà définie)
+function obtenirDonnees(type, id) {
+    const donnees = {
+        utilisateur: { 
+            id: 1, 
+            nom: "Rachidi", 
+            prenom: "Amal", 
+            role: "Chef de projet" 
+        },
+        projet: { 
+            id: 1, 
+            nom: "Migration Cloud", 
+            status: "En cours",
+            progression: 75
+        },
+        taches: [
+            { id: 1, titre: "Configuration serveurs", fait: true },
+            { id: 2, titre: "Migration base de données", fait: true },
+            { id: 3, titre: "Tests de performance", fait: false },
+            { id: 4, titre: "Documentation", fait: false }
+        ]
+    };
+    
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (donnees[type]) {
+                resolve(donnees[type]);
+            } else {
+                reject(new Error("Type de données inconnu"));
+            }
+        }, 800);
+    });
+}
+
+// TODO: Créez la fonction async
+async function afficherTableauDeBord() {
+    console.log("Chargement du tableau de bord...");
+    
+    try {
+        // TODO: Utilisez await pour récupérer :
+        // 1. L'utilisateur
+        // 2. Le projet
+        // 3. Les tâches
+        // Puis affichez un résumé formaté
+        
+        // Votre code ici
+        
+    } catch (erreur) {
+        console.error("Erreur lors du chargement:", erreur.message);
+    }
+}</pre>
+        </div>
+
+        <button onclick="exercice7_1()">Tester l'exercice 7.1</button>
+        <button class="clear-btn" onclick="clearOutput('output7_1')">Effacer</button>
+        <div id="output7_1" class="output"></div>
+    </div>
+
+    <!-- EXERCICE 8: GESTION D'ERREUR AVANCÉE -->
+    <div class="exercise">
+        <h2>Exercice 8.1 : Gestion d'erreur robuste avec Fetch</h2>
+        <div class="enonce">
+            <strong>Objectif :</strong> Implémenter une gestion d'erreur complète pour les appels API<br><br>
+            <strong>Consigne :</strong> Créez une fonction qui gère tous les types d'erreurs possibles :
+            <ul>
+                <li>Erreurs réseau (pas de connexion)</li>
+                <li>Erreurs HTTP (404, 500, etc.)</li>
+                <li>Erreurs de parsing JSON</li>
+            </ul>
+        </div>
+
+        <div class="code-display">
+            <pre>async function fetchAvecGestionErreur(url) {
+    try {
+        // TODO: Implémentez la logique complète
+        // 1. Faire la requête avec fetch
+        // 2. Vérifier response.ok
+        // 3. Parser le JSON
+        // 4. Gérer chaque type d'erreur différemment
+        
+        // Votre code ici
+        
+    } catch (erreur) {
+        // TODO: Distinguer les types d'erreurs
+        // TypeError = erreur réseau
+        // Autres = erreurs HTTP ou JSON
+        
+        throw erreur;
+    }
+}
+
+// Fonction de test
+async function testerGestionErreurs() {
+    const urls = [
+        'https://jsonplaceholder.typicode.com/users/1',     // OK
+        'https://jsonplaceholder.typicode.com/users/9999',  // 404
+        'https://api-inexistante-xyz123.com/test'          // Erreur réseau
+    ];
+    
+    for (const url of urls) {
+        console.log(`\nTest avec : ${url}`);
+        try {
+            const donnees = await fetchAvecGestionErreur(url);
+            console.log('✓ Succès:', donnees);
+        } catch (erreur) {
+            console.error('✗ Erreur:', erreur.message);
+        }
+    }
+}</pre>
+        </div>
+
+        <button onclick="exercice8_1()">Tester l'exercice 8.1</button>
+        <button class="clear-btn" onclick="clearOutput('output8_1')">Effacer</button>
+        <div id="output8_1" class="output"></div>
+    </div>
+
+    <!-- EXERCICE FINAL: DASHBOARD -->
+    <div class="exercise">
+        <div class="section-title">EXERCICE FINAL : APPLICATION COMPLÈTE</div>
+        
+        <h2>Exercice 9.1 : Dashboard temps réel</h2>
+        <div class="enonce">
+            <strong>Objectif :</strong> Créer une application complète utilisant tous les concepts appris<br><br>
+            <strong>Consigne :</strong> Implémentez un dashboard qui :
+            <ul>
+                <li>Se met à jour automatiquement toutes les 3 secondes</li>
+                <li>Affiche des statistiques en temps réel</li>
+                <li>Gère les erreurs gracieusement</li>
+                <li>Peut être démarré et arrêté</li>
+            </ul>
+        </div>
+
+        <div class="important">
+            Cet exercice combine : setTimeout/setInterval, Promises, async/await, et gestion d'erreur
+        </div>
+
+        <!-- Zone du dashboard -->
+        <div id="dashboard" style="background: #ecf0f1; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3>Tableau de bord en temps réel</h3>
+            <div style="display: flex; gap: 20px; margin: 20px 0;">
+                <div style="flex: 1; background: white; padding: 15px; border-radius: 5px; text-align: center;">
+                    <h4>Utilisateurs actifs</h4>
+                    <p id="activeUsers" style="font-size: 24px; color: #3498db; font-weight: bold;">--</p>
+                </div>
+                <div style="flex: 1; background: white; padding: 15px; border-radius: 5px; text-align: center;">
+                    <h4>Messages aujourd'hui</h4>
+                    <p id="todayMessages" style="font-size: 24px; color: #3498db; font-weight: bold;">--</p>
+                </div>
+                <div style="flex: 1; background: white; padding: 15px; border-radius: 5px; text-align: center;">
+                    <h4>Temps de réponse</h4>
+                    <p id="apiTime" style="font-size: 24px; color: #3498db; font-weight: bold;">--</p>
+                </div>
+            </div>
+            <button onclick="demarrerDashboard()">Démarrer</button>
+            <button onclick="arreterDashboard()">Arrêter</button>
+            <button onclick="rafraichirMaintenant()">Rafraîchir maintenant</button>
+        </div>
+
+        <div class="code-display">
+            <pre>// Variables globales pour le dashboard
+let intervalId = null;
+let isRunning = false;
+
+// Simule une API qui retourne des statistiques
+async function obtenirStatistiques() {
+    const delai = Math.random() * 1000 + 200;
+    const debut = Date.now();
+    
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            // Simule une erreur 10% du temps
+            if (Math.random() < 0.1) {
+                reject(new Error("Erreur serveur"));
+            } else {
+                resolve({
+                    utilisateursActifs: Math.floor(Math.random() * 100) + 50,
+                    messagesAujourdhui: Math.floor(Math.random() * 1000) + 200,
+                    tempsReponse: Date.now() - debut
+                });
+            }
+        }, delai);
+    });
+}
+
+// TODO: Implémentez la fonction de mise à jour
+async function mettreAJourDashboard() {
+    try {
+        // TODO:
+        // 1. Appelez obtenirStatistiques()
+        // 2. Mettez à jour les éléments DOM
+        // 3. Gérez les erreurs gracieusement
+        
+        // Votre code ici
+        
+    } catch (erreur) {
+        // TODO: Affichez l'erreur sans crasher l'application
+    }
+}
+
+// TODO: Implémentez la fonction pour démarrer le dashboard
+function demarrerDashboard() {
+    // TODO:
+    // 1. Vérifiez si déjà en cours
+    // 2. Lancez une première mise à jour
+    // 3. Configurez setInterval pour mise à jour automatique
+    // 4. Mettez à jour l'état des boutons
+    
+    // Votre code ici
+}
+
+// TODO: Implémentez la fonction pour arrêter le dashboard
+function arreterDashboard() {
+    // TODO:
+    // 1. Arrêtez l'interval
+    // 2. Réinitialisez les variables
+    // 3. Mettez à jour l'interface
+    
+    // Votre code ici
+}
+
+// Fonction bonus : rafraîchissement manuel
+function rafraichirMaintenant() {
+    if (isRunning) {
+        mettreAJourDashboard();
+    } else {
+        console.log("Le dashboard doit être démarré d'abord");
+    }
+}</pre>
+        </div>
+
+        <div id="output9_1" class="output"></div>
+    </div>
+
+    <!-- SCRIPT PRINCIPAL -->
+    <script>
+        // Redéfinition de console pour capturer les logs
+        const originalConsole = {
+            log: console.log,
+            error: console.error,
+            time: console.time,
+            timeEnd: console.timeEnd
+        };
+
+        const timers = {};
+
+        function captureConsole(outputId) {
+            const output = document.getElementById(outputId);
+            
+            console.log = function(...args) {
+                const message = args.map(arg => 
+                    typeof arg === 'object' ? JSON.stringify(arg, null, 2) : arg
+                ).join(' ');
+                output.textContent += message + '\n';
+                originalConsole.log.apply(console, args);
+            };
+            
+            console.error = function(...args) {
+                const message = args.map(arg => 
+                    typeof arg === 'object' ? JSON.stringify(arg, null, 2) : arg
+                ).join(' ');
+                output.textContent += '❌ ' + message + '\n';
+                originalConsole.error.apply(console, args);
+            };
+            
+            console.time = function(label) {
+                timers[label] = Date.now();
+                originalConsole.time.apply(console, arguments);
+            };
+            
+            console.timeEnd = function(label) {
+                if (timers[label]) {
+                    const duration = Date.now() - timers[label];
+                    output.textContent += `⏱️ ${label}: ${duration}ms\n`;
+                    delete timers[label];
+                }
+                originalConsole.timeEnd.apply(console, arguments);
+            };
+        }
+
+        function restoreConsole() {
+            console.log = originalConsole.log;
+            console.error = originalConsole.error;
+            console.time = originalConsole.time;
+            console.timeEnd = originalConsole.timeEnd;
+        }
+
+        function clearOutput(outputId) {
+            document.getElementById(outputId).textContent = '';
+        }
+
+        // ========== DÉBUT DU CODE À COMPLÉTER PAR L'ÉTUDIANT ==========
+
+        // EXERCICE 1.1
+        function recupererUtilisateur(id, callback) {
+            console.log("Recherche de l'utilisateur " + id + "...");
+            
+            const utilisateur = {
+                id: id,
+                nom: "Alami",
+                prenom: "Fatima",
+                ville: "Casablanca"
+            };
+            
+            setTimeout(() => {
+                callback(utilisateur);
+            }, 2000);
+        }
+
+        function exercice1_1() {
+            captureConsole('output1_1');
+            
+            // Test de votre fonction
+            recupererUtilisateur(1, function(utilisateur) {
+                console.log("Utilisateur trouvé:", utilisateur);
+            });
+            
+            setTimeout(restoreConsole, 3000);
+        }
+
+        // EXERCICE 1.2
+        function recupererUtilisateurAvecErreur(id, callback) {
+            setTimeout(() => {
+                const utilisateur = {
+                    id: id,
+                    nom: "Bennani",
+                    prenom: "Mohammed",
+                    email: "m.bennani@example.ma"
+                };
+                
+                if (id <= 0) {
+                    callback(new Error("ID invalide"));
+                } else {
+                    callback(null, utilisateur);
+                }
+            }, 1000);
+        }
+
+        function exercice1_2() {
+            captureConsole('output1_2');
+            
+            // Test avec ID valide
+            recupererUtilisateurAvecErreur(1, function(err, utilisateur) {
+                if (err) {
+                    console.error("Erreur:", err.message);
+                } else {
+                    console.log("Succès:", utilisateur);
+                }
+            });
+            
+            // Test avec ID invalide
+            recupererUtilisateurAvecErreur(-1, function(err, utilisateur) {
+                if (err) {
+                    console.error("Erreur:", err.message);
+                } else {
+                    console.log("Succès:", utilisateur);
+                }
+            });
+            
+            setTimeout(restoreConsole, 3000);
+        }
+
+        // EXERCICE 2.1
+        function recupererUtilisateurAPI(userId, callback) {
+            const xhr = new XMLHttpRequest();
+            const url = `https://jsonplaceholder.typicode.com/users/${userId}`;
+            
+            console.log("Envoi de la requête pour l'utilisateur " + userId);
+            
+            xhr.open('GET', url, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        const data = JSON.parse(xhr.responseText);
+                        callback(data);
+                    } else {
+                        console.error("Erreur HTTP :", xhr.status);
+                    }
+                }
+            };
+            xhr.send();
+        }
+
+        function exercice2_1() {
+            captureConsole('output2_1');
+            
+            recupererUtilisateurAPI(1, function(utilisateur) {
+                console.log("Données reçues:", utilisateur);
+            });
+            
+            setTimeout(restoreConsole, 3000);
+        }
+
+        // EXERCICE 3.1
+        function recupererUtilisateurCallbackHell(id, callback) {
+            setTimeout(() => {
+                callback({
+                    id: id,
+                    nom: "El Idrissi",
+                    prenom: "Amina",
+                    ville: "Rabat"
+                });
+            }, 1000);
+        }
+
+        function recupererPostsCallbackHell(userId, callback) {
+            setTimeout(() => {
+                callback([
+                    { id: 1, titre: "Introduction à Node.js", userId: userId },
+                    { id: 2, titre: "Les Promises en JavaScript", userId: userId }
+                ]);
+            }, 1000);
+        }
+
+        function recupererCommentairesCallbackHell(postId, callback) {
+            setTimeout(() => {
+                callback([
+                    { id: 1, texte: "Excellent article!", auteur: "Khadija" },
+                    { id: 2, texte: "Très instructif", auteur: "Hassan" }
+                ]);
+            }, 1000);
+        }
+
+        function demonstrationCallbackHell() {
+            console.log("Début de la récupération des données...");
+            
+            recupererUtilisateurCallbackHell(1, function(utilisateur) {
+                console.log("Utilisateur:", utilisateur);
+                recupererPostsCallbackHell(utilisateur.id, function(posts) {
+                    console.log("Posts:", posts);
+                    recupererCommentairesCallbackHell(posts[0].id, function(commentaires) {
+                        console.log("Commentaires:", commentaires);
+                    });
+                });
+            });
+        }
+
+        function exercice3_1() {
+            captureConsole('output3_1');
+            demonstrationCallbackHell();
+            setTimeout(restoreConsole, 5000);
+        }
+
+        // EXERCICE 4.1
+        function recupererUtilisateurAvecFetch(userId) {
+            const url = `https://jsonplaceholder.typicode.com/users/${userId}`;
+            
+            return fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Erreur HTTP ${response.status}`);
+                    }
+                    return response.json();
+                });
+        }
+
+        function exercice4_1() {
+            captureConsole('output4_1');
+            
+            recupererUtilisateurAvecFetch(2)
+                .then(utilisateur => {
+                    console.log("Utilisateur récupéré:", utilisateur);
+                })
+                .catch(erreur => {
+                    console.error("Erreur:", erreur.message);
+                });
+            
+            setTimeout(restoreConsole, 3000);
+        }
+
+        // EXERCICE 5.1
+        function recupererUtilisateurPromise(id) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        id: id,
+                        nom: "Tazi",
+                        prenom: "Omar",
+                        profession: "Ingénieur"
+                    });
+                }, 1000);
+            });
+        }
+
+        function recupererPostsPromise(userId) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve([
+                        { id: 1, titre: "Les bases de MongoDB", userId },
+                        { id: 2, titre: "Redis pour les débutants", userId }
+                    ]);
+                }, 1000);
+            });
+        }
+
+        function recupererCommentairesPromise(postId) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve([
+                        { id: 1, texte: "Super article!", auteur: "Youssef" },
+                        { id: 2, texte: "Merci pour le partage", auteur: "Salma" }
+                    ]);
+                }, 1000);
+            });
+        }
+
+        function demonstrationPromiseChain() {
+            console.log("Début avec les Promesses...");
+            
+            recupererUtilisateurPromise(1)
+                .then(utilisateur => {
+                    console.log("Utilisateur:", utilisateur);
+                    return recupererPostsPromise(utilisateur.id);
+                })
+                .then(posts => {
+                    console.log("Posts:", posts);
+                    return recupererCommentairesPromise(posts[0].id);
+                })
+                .then(commentaires => {
+                    console.log("Commentaires:", commentaires);
+                })
+                .catch(erreur => {
+                    console.error("Erreur:", erreur.message);
+                });
+        }
+
+        function exercice5_1() {
+            captureConsole('output5_1');
+            demonstrationPromiseChain();
+            setTimeout(restoreConsole, 5000);
+        }
+
+        // EXERCICE 6.1
+        function recupererProfil(userId) {
+            return new Promise((resolve) => {
+                const delai = Math.random() * 2000 + 500;
+                setTimeout(() => {
+                    const noms = ["Zahiri", "Mansouri", "Berrada", "Alaoui", "Benjelloun"];
+                    const prenoms = ["Nadia", "Leila", "Karim", "Sofia", "Ahmed"];
+                    resolve({
+                        id: userId,
+                        nom: noms[userId - 1],
+                        prenom: prenoms[userId - 1],
+                        delai: Math.round(delai)
+                    });
+                }, delai);
+            });
+        }
+
+        async function demonstrationPromiseAll() {
+            console.log("Version séquentielle :");
+            console.time("Durée séquentielle");
+
+            const profilsSeq = [];
+            for (const id of [1, 2, 3]) {
+                profilsSeq.push(await recupererProfil(id));
+            }
+            console.log("Profils séquentiels:", profilsSeq);
+            console.timeEnd("Durée séquentielle");
+
+            console.log("\nVersion parallèle :");
+            console.time("Durée parallèle");
+            const profilsParallele = await Promise.all([1, 2, 3].map(id => recupererProfil(id)));
+            console.log("Profils parallèles:", profilsParallele);
+            console.timeEnd("Durée parallèle");
+        }
+
+        function exercice6_1() {
+            captureConsole('output6_1');
+            demonstrationPromiseAll();
+            setTimeout(restoreConsole, 10000);
+        }
+
+        // EXERCICE 7.1
+        function obtenirDonnees(type, id) {
+            const donnees = {
+                utilisateur: { 
+                    id: 1, 
+                    nom: "Rachidi", 
+                    prenom: "Amal", 
+                    role: "Chef de projet" 
+                },
+                projet: { 
+                    id: 1, 
+                    nom: "Migration Cloud", 
+                    status: "En cours",
+                    progression: 75
+                },
+                taches: [
+                    { id: 1, titre: "Configuration serveurs", fait: true },
+                    { id: 2, titre: "Migration base de données", fait: true },
+                    { id: 3, titre: "Tests de performance", fait: false },
+                    { id: 4, titre: "Documentation", fait: false }
+                ]
+            };
+            
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if (donnees[type]) {
+                        resolve(donnees[type]);
+                    } else {
+                        reject(new Error("Type de données inconnu"));
+                    }
+                }, 800);
+            });
+        }
+
+        async function afficherTableauDeBord() {
+            console.log("Chargement du tableau de bord...");
+            
+            try {
+                const utilisateur = await obtenirDonnees("utilisateur", 1);
+                const projet = await obtenirDonnees("projet", 1);
+                const taches = await obtenirDonnees("taches", 1);
+
+                const tachesTerminees = taches.filter(tache => tache.fait).length;
+                console.log("Résumé du tableau de bord:");
+                console.log("Utilisateur:", utilisateur);
+                console.log("Projet:", projet);
+                console.log(`Tâches: ${tachesTerminees}/${taches.length} terminées`);
+            } catch (erreur) {
+                console.error("Erreur lors du chargement:", erreur.message);
+            }
+        }
+
+        function exercice7_1() {
+            captureConsole('output7_1');
+            afficherTableauDeBord();
+            setTimeout(restoreConsole, 5000);
+        }
+
+        // EXERCICE 8.1
+        async function fetchAvecGestionErreur(url) {
+            try {
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    throw new Error(`Erreur HTTP ${response.status}`);
+                }
+
+                try {
+                    return await response.json();
+                } catch {
+                    throw new Error("Erreur de parsing JSON");
+                }
+            } catch (erreur) {
+                if (erreur instanceof TypeError) {
+                    throw new Error(`Erreur réseau: ${erreur.message}`);
+                }
+
+                throw erreur;
+            }
+        }
+
+        async function testerGestionErreurs() {
+            const urls = [
+                'https://jsonplaceholder.typicode.com/users/1',
+                'https://jsonplaceholder.typicode.com/users/9999',
+                'https://api-inexistante-xyz123.com/test'
+            ];
+            
+            for (const url of urls) {
+                console.log(`\nTest avec : ${url}`);
+                try {
+                    const donnees = await fetchAvecGestionErreur(url);
+                    console.log('✓ Succès:', donnees);
+                } catch (erreur) {
+                    console.error('✗ Erreur:', erreur.message);
+                }
+            }
+        }
+
+        function exercice8_1() {
+            captureConsole('output8_1');
+            testerGestionErreurs();
+            setTimeout(restoreConsole, 5000);
+        }
+
+        // EXERCICE 9.1 - Dashboard
+        let intervalId = null;
+        let isRunning = false;
+
+        async function obtenirStatistiques() {
+            const delai = Math.random() * 1000 + 200;
+            const debut = Date.now();
+            
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if (Math.random() < 0.1) {
+                        reject(new Error("Erreur serveur"));
+                    } else {
+                        resolve({
+                            utilisateursActifs: Math.floor(Math.random() * 100) + 50,
+                            messagesAujourdhui: Math.floor(Math.random() * 1000) + 200,
+                            tempsReponse: Date.now() - debut
+                        });
+                    }
+                }, delai);
+            });
+        }
+
+        async function mettreAJourDashboard() {
+            try {
+                const statistiques = await obtenirStatistiques();
+                document.getElementById("activeUsers").textContent = statistiques.utilisateursActifs;
+                document.getElementById("todayMessages").textContent = statistiques.messagesAujourdhui;
+                document.getElementById("apiTime").textContent = `${statistiques.tempsReponse} ms`;
+            } catch (erreur) {
+                document.getElementById("activeUsers").textContent = "Erreur";
+                document.getElementById("todayMessages").textContent = "Erreur";
+                document.getElementById("apiTime").textContent = "Erreur";
+                console.error("Erreur du dashboard:", erreur.message);
+            }
+        }
+
+        function demarrerDashboard() {
+            if (isRunning) {
+                console.log("Le dashboard est déjà en cours d'exécution");
+                return;
+            }
+
+            isRunning = true;
+            mettreAJourDashboard();
+            intervalId = setInterval(() => {
+                mettreAJourDashboard();
+            }, 3000);
+            console.log("Dashboard démarré");
+        }
+
+        function arreterDashboard() {
+            if (intervalId) {
+                clearInterval(intervalId);
+            }
+            intervalId = null;
+            isRunning = false;
+            console.log("Dashboard arrêté");
+        }
+
+        function rafraichirMaintenant() {
+            if (isRunning) {
+                mettreAJourDashboard();
+            } else {
+                console.log("Le dashboard doit être démarré d'abord");
+            }
+        }
+
+        // ========== FIN DU CODE À COMPLÉTER ==========
+
+    </script>
+</body>
+</html>
